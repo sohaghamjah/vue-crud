@@ -11,17 +11,24 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col" width="15%">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                <tr v-for="(student, index) in students.data" :key="index">
+                                    <th scope="row">SL</th>
+                                    <td>{{ student.name }}</td>
+                                    <td>{{ student.email }}</td>
+                                    <td>{{ student.phone }}</td>
+                                    <td>{{ student.gender }}</td>
+                                    <td>
+                                        <a href="" class="btn btn-sm btn-info me-1">Edit</a>
+                                        <a href="" class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -35,6 +42,25 @@
 <script>
     export default {
         name: 'List',
+        data() {
+            return{
+                students: []
+            }
+        },
+        mounted(){
+           this.fetchData();
+        },
+        methods:{
+            fetchData(){
+                 axios.get('/api/student')
+                .then(res => {
+                    this.students = res.data
+                })
+                .catch(error => {
+
+                });
+            }
+        }
     }
 </script>
 
