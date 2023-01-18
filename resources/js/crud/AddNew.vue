@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between text-end">
                         <h4>Add New Student</h4>
-                        <router-link class="btn btn-sm btn-primary" :to="{ name: 'add' }">Student List</router-link>
+                        <router-link class="btn btn-sm btn-primary" :to="{ name: 'list' }">Student List</router-link>
                     </div>
                     <div class="card-body">
                       <form @submit.prevent="storeData">

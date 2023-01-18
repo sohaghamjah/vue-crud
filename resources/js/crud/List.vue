@@ -27,7 +27,7 @@
                                     <td>{{ student.gender }}</td>
                                     <td>
                                         <a href="" class="btn btn-sm btn-info me-1">Edit</a>
-                                        <a href="" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="" @click.prevent="destroy(student.id)" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -59,6 +59,19 @@
                 .catch(error => {
 
                 });
+            },
+            destroy(id){
+                if(!window.confirm('Are you sure to delete?')){
+                    return;
+                }else{
+                    axios.delete('/api/student/'+id)
+                    .then(res => {
+                        this.fetchData();
+                    })
+                    .catch(error => {
+
+                    });
+                }
             }
         }
     }
